@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Drag and Drop File Upload</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="/assets/favicon.ico">
+        <link rel="stylesheet" href="styles.css">
+</head>
+      
+<body>
+
+    <div class="drop-zone">
+        <span class="drop-zone__prompt">Upload Math pic</span>
+        <input type="file" name="myFile" class="drop-zone__input">
+    </div>
+
+    <div id="camera"></div>
+    <button onClick="take_snapshot()">Take Snapshot</button>
+    <div id="results"></div>
+
+<script src="index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.26/webcam.min.js" integrity="sha512-dQIiHSl2hr3NWKKLycPndtpbh5iaHLo6MwrXm7F0FM5e+kL2U16oE9uIwPHUl6fQBeCthiEuV/rzP3MiAB8Vfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+
+    Webcam.set({
+        width: 350,
+        height: 450,
+        image_format: 'jpeg',
+        jpeg_quality:90
+    })
+    Webcam.attach("#camera")
+
+    function take_snapshot(){
+
+        
+   // take snapshot and get image data
+   Webcam.snap( function(data_uri) {
+       // display results in page
+       document.getElementById('results').innerHTML = 
+        '<img src="'+data_uri+'"/>';
+    } );
+
+    }
+
+
+</script>
+
+
+</body>
+</html>
